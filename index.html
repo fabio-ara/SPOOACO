@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPOOACO | IFSP São Paulo</title>
+  <meta
+    name="description"
+    content="Página inicial do repositório da disciplina Organização e Arquitetura de Computadores do IFSP São Paulo."
+  >
+  <style>
+    :root {
+      --bg: #f5f2ed;
+      --paper: rgba(255, 255, 255, 0.76);
+      --paper-strong: rgba(255, 255, 255, 0.9);
+      --text: #1c1a19;
+      --muted: #625d59;
+      --line: rgba(28, 26, 25, 0.1);
+      --ifsp-red: #b31f2d;
+      --ifsp-green: #0d6b4d;
+      --shadow: 0 24px 60px rgba(43, 33, 24, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(13, 107, 77, 0.12), transparent 24%),
+        radial-gradient(circle at top left, rgba(179, 31, 45, 0.1), transparent 20%),
+        linear-gradient(180deg, #f7f3ee 0%, #f2eee8 100%);
+    }
+
+    .page {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 40px;
+    }
+
+    .frame {
+      padding: 18px;
+      border: 1px solid rgba(28, 26, 25, 0.06);
+      border-radius: 32px;
+      background: rgba(255, 255, 255, 0.28);
+      backdrop-filter: blur(10px);
+    }
+
+    .topbar,
+    .hero,
+    .card {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 18px;
+      padding: 18px 22px;
+      border-radius: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 212px;
+      height: auto;
+      flex: 0 0 auto;
+    }
+
+    .nav,
+    .hero-tools,
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav a,
+    .icon-button,
+    .card a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible,
+    .icon-button:hover,
+    .icon-button:focus-visible,
+    .card a:hover,
+    .card a:focus-visible {
+      border-color: rgba(13, 107, 77, 0.18);
+      background: rgba(13, 107, 77, 0.06);
+      color: var(--ifsp-green);
+      outline: none;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) 220px;
+      gap: 28px;
+      align-items: end;
+      padding: 42px;
+      border-radius: 32px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(250, 248, 244, 0.88)),
+        linear-gradient(120deg, rgba(13, 107, 77, 0.03), rgba(179, 31, 45, 0.03));
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: var(--ifsp-green);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    h1,
+    h2,
+    p {
+      margin-top: 0;
+    }
+
+    h1,
+    h2 {
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+      letter-spacing: -0.04em;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: clamp(2rem, 3.7vw, 3rem);
+      line-height: 1.04;
+    }
+
+    .intro {
+      max-width: 55ch;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .hero-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .hero-aside {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .meta-card {
+      padding: 18px 18px 16px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.66);
+    }
+
+    .meta-card strong,
+    .meta-card span {
+      display: block;
+    }
+
+    .meta-card strong {
+      margin-bottom: 5px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ifsp-green);
+    }
+
+    .meta-card span {
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    .icon-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      border: 1px solid rgba(28, 26, 25, 0.1);
+      background: var(--paper-strong);
+      text-decoration: none;
+      transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease, border-color 160ms ease;
+    }
+
+    .icon-button:hover,
+    .icon-button:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(43, 33, 24, 0.08);
+      outline: none;
+    }
+
+    .icon-button-primary {
+      color: #fffdfb;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--ifsp-red), #ca4a57);
+      box-shadow: 0 14px 28px rgba(179, 31, 45, 0.16);
+    }
+
+    .icon {
+      width: 20px;
+      height: 20px;
+      flex: 0 0 auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .card {
+      padding: 24px;
+      border-radius: 26px;
+    }
+
+    .card h2 {
+      margin-bottom: 10px;
+      font-size: 1.45rem;
+    }
+
+    .card p {
+      margin-bottom: 18px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      padding: 0 14px;
+      border: 1px solid rgba(28, 26, 25, 0.1);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    @media (max-width: 860px) {
+      .hero,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="frame">
+      <header class="topbar">
+        <div class="brand">
+          <img
+            class="brand-mark"
+            src="./assets/brand/ifsp-campus-sao-paulo.png"
+            alt="IFSP Campus São Paulo"
+          >
+        </div>
+        <nav class="nav" aria-label="Navegação principal">
+          <a href="./README.md">README</a>
+          <a href="./Trabalho-1/">Trabalho 1</a>
+          <a href="./Trabalho-2/">Trabalho 2</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div>
+            <div class="eyebrow">SPOOACO • 2026.1</div>
+            <h1>Organização e Arquitetura de Computadores</h1>
+            <p class="intro">
+              Repositório público com os trabalhos desenvolvidos na disciplina do Prof. André Luiz da Silva
+              no curso de Tecnologia em Análise e Desenvolvimento de Sistemas do IFSP São Paulo.
+            </p>
+            <div class="hero-row hero-tools">
+              <a class="icon-button icon-button-primary" href="./Trabalho-1/" aria-label="Abrir Trabalho 1">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <a class="icon-button" href="./Trabalho-2/mobile-rag/" aria-label="Abrir MobileRAG">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="7" y="3.5" width="10" height="17" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M10 7.5h4M9.5 16.5h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+              </a>
+              <a class="icon-button" href="./Trabalho-2/the-philosophy-of-quantum-computing/" aria-label="Abrir The Philosophy of Quantum Computing">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="2" stroke="currentColor" stroke-width="1.8"/>
+                  <ellipse cx="12" cy="12" rx="8" ry="3.5" stroke="currentColor" stroke-width="1.8"/>
+                  <ellipse cx="12" cy="12" rx="3.5" ry="8" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <aside class="hero-aside">
+            <div class="meta-card">
+              <strong>Professor</strong>
+              <span>André Luiz da Silva</span>
+            </div>
+            <div class="meta-card">
+              <strong>Curso</strong>
+              <span>Tecnologia em Análise e Desenvolvimento de Sistemas</span>
+            </div>
+            <div class="meta-card">
+              <strong>Período</strong>
+              <span>1º semestre de 2026</span>
+            </div>
+          </aside>
+        </section>
+
+        <section class="grid" aria-label="Trabalhos">
+          <article class="card">
+            <h2>Trabalho 1</h2>
+            <p>Apresentação sobre o declínio da Lei de Moore e os limites da miniaturização.</p>
+            <div class="links">
+              <a href="./Trabalho-1/">Visão geral</a>
+              <a href="./Trabalho-1/lei-de-moore-em-declinio.pdf">PDF</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h2>MobileRAG</h2>
+            <p>Apresentação e artigo sobre RAG on-device com foco em desempenho, memória e energia.</p>
+            <div class="links">
+              <a href="./Trabalho-2/mobile-rag/">Visão geral</a>
+              <a href="./Trabalho-2/mobile-rag/MobileRAG.pdf">PDF</a>
+              <a href="./Trabalho-2/mobile-rag/artigo-MobileRAG.pdf">Artigo</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h2>Quantum Computing</h2>
+            <p>Apresentação e artigo sobre a filosofia da computação quântica no contexto do Trabalho 2.</p>
+            <div class="links">
+              <a href="./Trabalho-2/the-philosophy-of-quantum-computing/">Visão geral</a>
+              <a href="./Trabalho-2/the-philosophy-of-quantum-computing/The-Philosophy-of-Quantum-Computing.pdf">PDF</a>
+              <a href="./Trabalho-2/the-philosophy-of-quantum-computing/artigo-Cuffaro-The-Philosophy-of-Quantum-Computing.pdf">Artigo</a>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
